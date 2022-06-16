@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render, get_object_or_404
 from app.models import *
+from app.forms import *
 
 # Create your views here.
 def BlogHome(request):
@@ -27,5 +28,25 @@ def IndexPage(request):
         'popular_post': popular_post,
         'side_popular_post': side_popular_post,
         'most_read_post': most_read_post,
+    }
+    return render(request, template_name, context)
+
+def PostDetail(request, slug):
+    template_name = "article.html"
+    post = get_object_or_404(Blog, slug=slug)
+    form = CommentForm()
+    if request.method == "POST":
+        form = CommentForm(request.POST or None)
+        if form.is_valid():
+            c = form.save(commit=False)
+            c.post = post
+            c.save()
+            return redirect('/')
+    postComment = Comment.objects.filter(post = post)
+
+    context = {
+        'post': post,
+        'form': form,
+        'postComment': postComment
     }
     return render(request, template_name, context)

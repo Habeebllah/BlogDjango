@@ -175,7 +175,7 @@
                         <div class="sidebar_widget">
                             <ul class="catlist">
                                 {% for cat, counts in cat_count %}
-                                <li><a href="{% url 'Blog' %}">{{cat.name}} <span>({{counts}})</span></a></li>
+                                <li><a href="{% url 'Blog' cat.slug %}">{{cat.name}} <span>({{counts}})</span></a></li>
                                 {% endfor %}
                              </ul>
                         </div>

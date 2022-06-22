@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
     path('', IndexPage, name="Index" ),
-    path('blog/', BlogHome, name="Blog" ),
+    path('blog/category/<str:slug>', BlogHome, name="Blog" ),
     path('blog/<str:slug>', PostDetail, name="details" ),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

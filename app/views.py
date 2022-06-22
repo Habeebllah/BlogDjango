@@ -3,11 +3,13 @@ from app.models import *
 from app.forms import *
 
 # Create your views here.
-def BlogHome(request):
+def BlogHome(request, slug):
     template_name = "blog.html"
-    category = Category.objects.all()
+    cate = get_object_or_404(Category, slug=slug)
+    post = Blog.objects.filter(category__slug=slug)
     context = {
-        'category': category
+        'post': post,
+        'cate': cate,
     }
     return render(request, template_name, context)
 

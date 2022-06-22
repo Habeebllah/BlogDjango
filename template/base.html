@@ -29,8 +29,8 @@
                                 <a href="#" class="header_categ_opener"><span class="icon-grid"></span>Categories</a>
                                 <div class="header_categ_drop">
                                     <ul class="catlist">
-                                        {% for c in category %}
-                                        <li><a href="{% url 'Blog' %}">{{c.name}} <span>(15)</span></a></li>
+                                        {% for c, count in cat_count %}
+                                        <li><a href="{% url 'Blog' c.slug %}">{{c.name}} <span>{{count}}</span></a></li>
                                         {% endfor %}
                                         
                                     </ul>
@@ -67,7 +67,7 @@
                             <div class="footer_title">Categories</div>
                             <ul class="footer_list">
                                 {% for c in category %}
-                                <li><a href="{% url 'Blog' %}">{{c.name}}</a></li>
+                                <li><a href="{% url 'Blog' c.slug %}">{{c.name}}</a></li>
                                 {% endfor %}
                             </ul>
                         </div>

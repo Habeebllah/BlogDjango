@@ -44,3 +44,4 @@ def PostDetail(request, slug):
         'postComment': postComment
     }
     return render(request, template_name, context)
+

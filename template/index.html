@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
+
 {% block content %}
 <!-- BEGIN CONTENT -->
     <main class="content">
@@ -172,8 +174,8 @@
                         </div>
                         <div class="sidebar_widget">
                             <ul class="catlist">
-                                {% for cat in category %}
-                                <li><a href="{% url 'Blog' %}">{{cat.name}} <span>(-)</span></a></li>
+                                {% for cat, counts in cat_count %}
+                                <li><a href="{% url 'Blog' %}">{{cat.name}} <span>({{counts}})</span></a></li>
                                 {% endfor %}
                              </ul>
                         </div>
